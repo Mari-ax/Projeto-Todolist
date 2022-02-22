@@ -3,7 +3,7 @@ const getBank = () => JSON.parse(localStorage.getItem ('todoList')) ?? [];
 const setBank = (bank) => localStorage.setItem('todoList', JSON.stringify(bank));
 
 
-const criarItem = (task, status, indice) => {
+const createItem = (task, status, indice) => {
     const item = document.createElement('label');
     item.classList.add('todo__item');
     item.innerHTML = `
@@ -22,20 +22,20 @@ const cleanTasks = () => {
     }
 }
 
-const atualizarTela = () => {
+const refreshScreen = () => {
     cleanTasks();
     const bank = getBank();
-    bank.forEach ((item, indice) => criarItem (item.task, item.status, indice));
+    bank.forEach ((item, indice) => createItem (item.task, item.status, indice));
 }
 
-const inserirItem = (event) => {
+const insertItem = (event) => {
     const tecla = event.key;
     if (tecla === 'Enter') {
         const text = event.target.value;
         const bank = getBank();
         bank.push ({'task': text, 'status': ''});
         setBank(bank);
-        atualizarTela();
+        refreshScreen();
         event.target.value = '';
     }
 
@@ -45,14 +45,14 @@ const removeItem = (indice) => {
     const bank = getBank();
     bank.splice (indice, 1);
     setBank(bank);
-    atualizarTela();
+    refreshScreen();
 }
 
-const atualizarItem = (indice) => {
+const updateItem = (indice) => {
     const bank = getBank();
     bank[indice].status = bank[indice].status === '' ? 'checked' : '';
     setBank(bank);
-    atualizarTela();
+    refreshScreen();
 }
 
 const clickItem = (event) => {
@@ -62,12 +62,11 @@ const clickItem = (event) => {
         removeItem(indice);
     }else if (element.type === 'checkbox') {
         const indice = element.dataset.indice;
-        atualizarItem (indice);
+        updateItem (indice);
     }
 }
 
-document.getElementById('newItem').addEventListener('keypress', inserirItem);
+document.getElementById('newItem').addEventListener('keypress', insertItem);
 document.getElementById('todoList').addEventListener('click', clickItem);
 
-atualizarTela(); // Every time my bank is modified, this function will be called.
-
+refreshScreen(); // Every time my bank is modified, this function will be called.

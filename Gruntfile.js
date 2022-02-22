@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    './assets/css/main.css': './less/extend.less'
+                    './assets/css/main.css': './less/_extend.less'
                 }
             }
         },

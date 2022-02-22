@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
     <title>Todolist</title>
 </head>
 <body>
@@ -11,17 +12,20 @@
         <div class="todo__title">
             TODO - LIST
         </div>
+        
+        <div class="todo__list" id="todoList"></div>
+        
+        <div class="todo__new-item">
+            <input type="text" id="newItem" placeholder="Add your new todo">
+            <button type="submit"><span class="material-icons">add</span></button>
+        </div>
+        <div>
+            <button type="text" class="clear-button">Clear All</button>
+        </div>
+        
     </div>
-
-    <div class="todo__list" id="todoList"></div>
-
-    <div class="todo__new-item">
-        <div>&and;</div>
-        <input type="text" id="newItem" placeholder="Type and press enter to add the task">
-        <div>&and;</div>
-    </div>
-
-    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/components/App.js"></script>
+    
 </body>
 
 
